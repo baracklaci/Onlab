@@ -1,0 +1,25 @@
+html {
+    height: 100%;
+}
+
+body {
+    font-size: 0.8em;
+    color: rgb(24, 24, 24);
+    height: 100vh;
+    background-color: rgb(124, 124, 124);
+}
+
+.content {
+    margin-left: 200px;
+    height: 100%;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+}
+
+.sheet-add {
+    background-color: rgb(206, 206, 206);
+}
+
+h1 {
+    margin-left: 10px;
+}

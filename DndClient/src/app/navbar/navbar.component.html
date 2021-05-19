@@ -1,0 +1,11 @@
+<div id="sidenav" class="sidenav">
+    <a routerLink='/'>
+        <img src="assets/dnd_transparent_logo.png" alt="Dnd logo">
+    </a>
+    <a routerLink='/'>Home</a>
+    <a [routerLink]="['/profile']">Profile</a>
+    <a routerLink='/sheets'>Existing sheets</a>
+    <a [routerLink]="['/sheet']" [queryParams]="{new: true}">New sheet</a>
+    <a *ngIf='signedIn' (click)='_signOut()' class="last">Sign out</a>
+    <a *ngIf='signedIn === false' routerLink='/login' class="last">Sign in</a>
+</div>

@@ -1,0 +1,54 @@
+<html>
+
+<body>
+    <app-navbar></app-navbar>
+    <div class="background">
+        <div class="content">
+            <h1 class="pb-2">Profile</h1>
+            <div class="username-pic">
+                <img class="profile-pic" src="assets/profile_pic.png">
+                <h2 class="username">{{userName}}</h2>
+            </div>
+            <h3>First name: </h3>
+            <input [(ngModel)]="firstName" name="firstName" (input)="sendData()">
+            <h3>Last name: </h3>
+            <input [(ngModel)]="lastName" name="lastName" (input)="sendData()">
+            <h1>Friends</h1>
+            <div>
+                <h2 *ngFor="let friend of friends" class="d-inline-block m-2">{{friend}}</h2>
+                <h2 class="d-inline-block m-2">friend</h2>
+                <a href="#" class="align-text-bottom mb-0 mt-3 ml-1">
+                    <img src="assets/add.png" class="friend-add">
+                </a>
+            </div>
+            <div class="pl-4 pt-2">
+                <input [ngModel]="friendRequest" name="friendRequest" class="form-check-input checkbox" type="checkbox" value="" id="flexCheckDefault" (click)="checkboxChanged()">
+                <label class="form-check-label pl-2" for="flexCheckDefault">
+                        Friend requests
+                    </label>
+            </div>
+            <h1>Existing sheets:</h1>
+            <div class="d-inline-block">
+                <div *ngFor="let sheet of sheets" class="card float-left m-3" style="width: 12rem;">
+                    <a [routerLink]="['/sheet', sheet]">
+                        <img src="assets/profile_pic.png" class="card-img-top" alt="sheet title">
+                    </a>
+
+                    <div class="card-body">
+                        <h5 class="card-title m-0">{{sheet}}</h5>
+                    </div>
+                </div>
+                <div class="card float-left m-3" style="width: 12rem;">
+                    <a [routerLink]="['/sheet']" [queryParams]="{new: true}">
+                        <img src="assets/add.png" class="card-img-top sheet-add" alt="sheet title">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title m-0">New Sheet</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

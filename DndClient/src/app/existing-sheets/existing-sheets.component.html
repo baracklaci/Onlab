@@ -1,0 +1,28 @@
+<html>
+
+<body>
+    <app-navbar></app-navbar>
+    <div class="content">
+        <h1>Existing sheets:</h1>
+        <div class="d-inline-block">
+            <div *ngFor="let sheet of sheets" class="card float-left m-3" style="width: 12rem;">
+                <a [routerLink]="['/sheet', sheet]">
+                    <img src="assets/profile_pic.png" class="card-img-top" alt="sheet title">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title m-0">{{sheet}}</h5>
+                </div>
+            </div>
+            <div class="card float-left m-3" style="width: 12rem;">
+                <a [routerLink]="['/sheet']" [queryParams]="{new: true}">
+                    <img src="assets/add.png" class="card-img-top sheet-add" alt="sheet title">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title m-0">New Sheet</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

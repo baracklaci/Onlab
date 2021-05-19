@@ -1,0 +1,25 @@
+<html>
+  <body>
+    <div class="wrapper fadeInDown">
+      <a routerLink='/'>
+        <img src="assets/dnd_transparent_logo.png" alt="Dnd logo">
+      </a>
+        <div id="formContent">
+          <!-- Tabs Titles -->
+          <!-- Login Form -->
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)" class="mt-5">
+            <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password</div>
+            <input [(ngModel)]="username" type="text" id="login" class="fadeIn second" name="userName" placeholder="username" required >
+            <input [(ngModel)]="password" type="password" id="password" class="fadeIn third" name="password" placeholder="password" required>
+            <input type="submit" class="fadeIn fourth" value="Log In">
+          </form>
+      
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a routerLink='/register' class="underlineHover">Make an account</a>
+          </div>
+      
+        </div>
+      </div>
+    </body>
+  </html>

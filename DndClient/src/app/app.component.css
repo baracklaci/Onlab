@@ -1,7 +1,49 @@
 html {
     height: 100%;
 }
+
 body {
     background-color: grey;
     min-height: 100vh;
+}
+
+.flex {
+    display: flex;
+}
+
+.navbar {
+    width: 200px;
+    flex-basis: 200px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.content {
+    flex-basis: calc(100% - 200px);
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.invite-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    background: var(--main-blue);
+    color: var(--main-grey);
+    text-align: center;
+    padding-top: 20px;
+    padding-inline: 15px;
+    padding-bottom: 5px;
+    max-width: 300px;
+}
+
+.btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.action-btn {
+    width: 40%;
 }

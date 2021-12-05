@@ -1,8 +1,10 @@
 <div id="sidenav" class="sidenav">
     <a routerLink='/'>
-        <img src="assets/dnd_transparent_logo.png" alt="Dnd logo">
+        <img src="assets/dnd_white_logo.png" alt="Dnd logo">
     </a>
     <a routerLink='/'>Home</a>
+    <a [routerLink]="['/generate']">Play!</a>
+    <!-- <a *ngIf='playRoomId' [routerLink]="['/play', playRoomId]">Play!</a> -->
     <a [routerLink]="['/profile']">Profile</a>
     <a routerLink='/sheets'>Existing sheets</a>
     <a [routerLink]="['/sheet']" [queryParams]="{new: true}">New sheet</a>

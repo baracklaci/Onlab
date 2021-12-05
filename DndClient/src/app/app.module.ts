@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { SheetComponent } from './sheet/sheet.component';
 import { RegisterComponent } from './register/register.component';
 import { ExistingSheetsComponent } from './existing-sheets/existing-sheets.component';
+import { CharacterSheetComponent } from './character-sheet/character-sheet.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FeatureSkillComponent } from './feature-skill/feature-skill.component';
+import { SpellComponent } from './spell/spell.component';
+import { AddSpellComponent } from './add-spell/add-spell.component';
+import { SpellHeaderComponent } from './spell-header/spell-header.component';
+import { PlayRoomComponent } from './play-room/play-room.component';
+import { GenerateRoomComponent } from './generate-room/generate-room.component';
+import { ChooseCharacterComponent } from './choose-character/choose-character.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -27,7 +37,15 @@ export function tokenGetter() {
     ProfileComponent,
     SheetComponent,
     RegisterComponent,
-    ExistingSheetsComponent
+    ExistingSheetsComponent,
+    CharacterSheetComponent,
+    FeatureSkillComponent,
+    SpellComponent,
+    AddSpellComponent,
+    SpellHeaderComponent,
+    PlayRoomComponent,
+    GenerateRoomComponent,
+    ChooseCharacterComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +58,9 @@ export function tokenGetter() {
         allowedDomains: ['localhost:5000'],
         disallowedRoutes: []
       }
-    })
+    }),
+    FontAwesomeModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -22,7 +22,7 @@ namespace DndWebApp.Controllers
         public SheetController()
         {
             var contextOptionsBuilder = new DbContextOptionsBuilder<DndContext>();
-            contextOptionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=dnd;Trusted_Connection=True;MultipleActiveResultSets=true");
+            contextOptionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=dnd;Trusted_Connection=True;");
             sheetService = new SheetService(new DndContext(contextOptionsBuilder.Options));
         }
 

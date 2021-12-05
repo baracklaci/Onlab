@@ -10,6 +10,8 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 })
 export class NavbarComponent implements OnInit{
 
+  playRoomId?: string = localStorage.getItem('playroom');
+
   public signedIn = false;
   public username: string | null;
 

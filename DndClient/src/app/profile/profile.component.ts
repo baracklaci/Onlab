@@ -11,6 +11,9 @@ import { SheetService } from '../client-generated';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  showInput: boolean = false;
+  friendName: string;
+
   userEmail: string | undefined;
   userName: string | null;
   friends: string[] | undefined;
@@ -39,6 +42,12 @@ export class ProfileComponent implements OnInit {
     this.sheetService.getSheets(this.userName).subscribe(data => {
       this.sheets = data;
     })
+  }
+
+  addFriend(){
+    this.userService.addFriend(this.userName, this.friendName);
+    this.showInput = false;
+    this.friendName = "";
   }
 
   checkboxChanged() {

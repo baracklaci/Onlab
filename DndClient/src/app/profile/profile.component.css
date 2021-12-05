@@ -3,22 +3,33 @@ html {
 }
 
 body {
-    font-size: 0.8em;
+    font-size: 0.4em;
     color: rgb(24, 24, 24);
     height: 100%;
 }
 
+input {
+    width: 80%;
+}
+
 .content {
-    margin-left: 50px;
+    margin-inline: auto;
+    margin-top: 20px;
+    max-width: 900px;
+    background-color: var(--main-grey);
     height: 100%;
     position: relative;
     font-family: "Poppins", sans-serif;
 }
 
+.name-input {
+    width: 100%;
+}
+
 .background {
-    margin-left: 200px;
-    height: 100%;
-    background-color: rgb(124, 124, 124);
+    margin-top: 0;
+    background-color: var(--dark-grey);
+    overflow: hidden;
 }
 
 .profile-pic {
@@ -46,17 +57,8 @@ body {
 }
 
 h1 {
-    font-size: 3.3em;
     padding-top: 15px;
-}
-
-h2 {
-    font-size: 2.3em;
-    margin-top: 20px;
-}
-
-h3 {
-    font-size: 1.8em;
+    text-align: center;
 }
 
 .card {
@@ -68,7 +70,7 @@ h3 {
 }
 
 .checkbox {
-    width: 20px; 
+    width: 20px;
     height: 20px;
 }
 

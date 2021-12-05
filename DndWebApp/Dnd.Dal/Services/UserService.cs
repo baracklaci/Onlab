@@ -55,5 +55,25 @@ namespace Dnd.Dal.Services
             db.SaveChanges();
             return FindUserByName(username);
         }
+
+        public bool AddFriend(string username, string friendname)
+        {
+            var user = db.Users.Include(u => u.Friends).FirstOrDefault(u => u.UserName == username);
+            var friend = db.Users.Include(u => u.Friends).FirstOrDefault(u => u.UserName == friendname);
+            if (friend == null || user == null)
+            {
+                return false;
+            }
+            if (user.Friends.FirstOrDefault(f => f.Friend2.UserName == friendname) == null)
+            {
+                user.Friends.Add(new UserFriend { Friend2 = friend });
+            }
+            if (friend.Friends.FirstOrDefault(f => f.Friend2.UserName == username) == null)
+            {
+                friend.Friends.Add(new UserFriend { Friend2 = user });
+            }
+            db.SaveChanges();
+            return true;
+        }
     }
 }

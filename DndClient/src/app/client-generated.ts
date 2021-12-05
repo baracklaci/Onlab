@@ -486,6 +486,10 @@ export class UserService {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "http://localhost:5000";
     }
 
+    addFriend(user: string, friend: string): void {
+        this.http.post(this.baseUrl + "/user/" + user + "/addfriend/" + friend, "").subscribe( () => console.log("success"));
+    }
+
     getUser(name: string | null): Observable<ApplicationUserHeader> {
         let url_ = this.baseUrl + "/user/{name}";
         if (name === undefined || name === null)
@@ -598,64 +602,6 @@ export class UserService {
             }));
         }
         return _observableOf<ApplicationUserHeader>(<any>null);
-    }
-}
-
-@Injectable()
-export class WeatherForecastService {
-    private http: HttpClient;
-    private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
-
-    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
-        this.http = http;
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "http://localhost:5000";
-    }
-
-    get(): Observable<FileResponse | null> {
-        let url_ = this.baseUrl + "/dnd";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Accept": "application/octet-stream"
-            })
-        };
-
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGet(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGet(<any>response_);
-                } catch (e) {
-                    return <Observable<FileResponse | null>><any>_observableThrow(e);
-                }
-            } else
-                return <Observable<FileResponse | null>><any>_observableThrow(response_);
-        }));
-    }
-
-    protected processGet(response: HttpResponseBase): Observable<FileResponse | null> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200 || status === 206) {
-            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
-            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
-            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
-            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf<FileResponse | null>(<any>null);
     }
 }
 
@@ -866,7 +812,7 @@ export class CharacterSheet implements ICharacterSheet {
     deathSaveSuccess?: number | undefined;
     deathSaveFail?: number | undefined;
     passiveWisdom?: number | undefined;
-    proficienciesLangues?: string | undefined;
+    proficienciesLanguages?: string | undefined;
     notes?: string | undefined;
     gold?: number | undefined;
     silver?: number | undefined;
@@ -961,7 +907,7 @@ export class CharacterSheet implements ICharacterSheet {
             this.deathSaveSuccess = _data["deathSaveSuccess"];
             this.deathSaveFail = _data["deathSaveFail"];
             this.passiveWisdom = _data["passiveWisdom"];
-            this.proficienciesLangues = _data["proficienciesLangues"];
+            this.proficienciesLanguages = _data["proficienciesLanguages"];
             this.notes = _data["notes"];
             this.gold = _data["gold"];
             this.silver = _data["silver"];
@@ -1056,7 +1002,7 @@ export class CharacterSheet implements ICharacterSheet {
         data["deathSaveSuccess"] = this.deathSaveSuccess;
         data["deathSaveFail"] = this.deathSaveFail;
         data["passiveWisdom"] = this.passiveWisdom;
-        data["proficienciesLangues"] = this.proficienciesLangues;
+        data["proficienciesLanguages"] = this.proficienciesLanguages;
         data["notes"] = this.notes;
         data["gold"] = this.gold;
         data["silver"] = this.silver;
@@ -1132,7 +1078,7 @@ export interface ICharacterSheet {
     deathSaveSuccess?: number | undefined;
     deathSaveFail?: number | undefined;
     passiveWisdom?: number | undefined;
-    proficienciesLangues?: string | undefined;
+    proficienciesLanguages?: string | undefined;
     notes?: string | undefined;
     gold?: number | undefined;
     silver?: number | undefined;

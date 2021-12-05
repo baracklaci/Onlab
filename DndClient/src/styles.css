@@ -1,1 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    --main-blue: #232333;
+    --main-grey: #F2F2F2;
+    --dark-grey: #BEBECC;
+    --light-blue: #3F3F5C;
+    --light-blue2: #DCDCFF;
+}
+
+a {
+    text-decoration: none;
+    color: var(--main-blue);
+    cursor: pointer;
+}
+
+a:hover {
+    color: var(--light-blue);
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: var(--light-blue);
+    border-radius: 5px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: var(--main-blue)
+}
+
+.dnd-btn {
+    position: relative;
+    display: inline-block;
+    padding: .5em 1.5em;
+    background: 0;
+    line-height: inherit;
+    border-radius: 0;
+    text-align: center;
+    background-color: var(--main-blue);
+    color: var(--main-grey);
+    cursor: pointer;
+}
+
+.dnd-btn:hover {
+    color: var(--dark-grey);
+}
+
+.dnd-modal .modal-content {
+    background: var(--main-blue);
+    color: #fff;
+}
+
+.clickable {
+    cursor: pointer;
+}

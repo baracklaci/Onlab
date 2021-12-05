@@ -7,6 +7,9 @@ import { SheetComponent } from './sheet/sheet.component';
 import { AuthGuard } from './auth-guard.guard';
 import { RegisterComponent } from './register/register.component';
 import { ExistingSheetsComponent } from './existing-sheets/existing-sheets.component';
+import { PlayRoomComponent } from './play-room/play-room.component';
+import { GenerateRoomComponent } from './generate-room/generate-room.component';
+import { ChooseCharacterComponent } from './choose-character/choose-character.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -17,6 +20,9 @@ const routes: Routes = [
   { path: 'sheet', component: SheetComponent, canActivate: [AuthGuard] },
   { path: 'sheet/:characterName', component: SheetComponent, canActivate: [AuthGuard] },
   { path: 'sheets', component: ExistingSheetsComponent, canActivate: [AuthGuard] },
+  { path: 'play/:id', component: PlayRoomComponent, canActivate: [AuthGuard] },
+  { path: 'generate', component: GenerateRoomComponent, canActivate: [AuthGuard] },
+  { path: 'choose/:id', component: ChooseCharacterComponent, canActivate: [AuthGuard] },
   { path: '**', component: HomeComponent },
 ];
 

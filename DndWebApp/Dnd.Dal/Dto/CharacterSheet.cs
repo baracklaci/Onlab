@@ -25,7 +25,7 @@ namespace Dnd.Dal.Dto
         public int? DeathSaveSuccess { get; set; }
         public int? DeathSaveFail { get; set; }
         public int? PassiveWisdom { get; set; }
-        public string ProficienciesLangues { get; set; }
+        public string ProficienciesLanguages { get; set; }
         public string Notes { get; set; }
         public int? Gold { get; set; }
         public int? Silver { get; set; }

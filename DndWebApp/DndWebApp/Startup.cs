@@ -32,11 +32,19 @@ namespace DndWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
+
             services.AddCors(o => o.AddPolicy("AllowAny", builder =>
             {
-                builder.AllowAnyOrigin()
+                //builder.WithOrigins("http://localhost:4200")
+                builder.WithOrigins("http://localhost:4200")
                        .AllowAnyMethod()
-                       .AllowAnyHeader();
+                       .AllowAnyHeader()
+                       .AllowCredentials();
             }));
 
             services.AddAuthentication(opt =>
@@ -53,8 +61,8 @@ namespace DndWebApp
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
 
-                    ValidIssuer = "https://localhost:5000",
-                    ValidAudience = "https://localhost:5000",
+                    ValidIssuer = "http://localhost:5000",
+                    ValidAudience = "http://localhost:5000",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecretSecretKey123"))
                 };
             });
@@ -86,14 +94,11 @@ namespace DndWebApp
             {
                 app.UseDeveloperExceptionPage();
             }
-
             db.Database.EnsureCreated();
 
             app.UseOpenApi();
 
             app.UseSwaggerUi3();
-
-            app.UseHttpsRedirection();
 
             app.UseStaticFiles();
 
@@ -108,6 +113,7 @@ namespace DndWebApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/signalr");
             });
 
         }

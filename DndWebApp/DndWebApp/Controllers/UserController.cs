@@ -41,17 +41,17 @@ namespace DndWebApp.Controllers
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        [Route("{name}")]
+        [Route("{name}/addfriend/{friend}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<ApplicationUserHeader> UpdateUser(string name, [FromBody] ApplicationUserHeader newuser)
+        public IActionResult AddFriend(string name, string friend)
         {
-            var user = userService.UpdateUser(name, newuser);
-            if (user == null)
+            var success = userService.AddFriend(name, friend);
+            if (!success)
             {
                 return NotFound();
             }
-            return Ok(user);
+            return Ok();
         }
     }
 }

@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from '../client-generated'
+import { SignalrService } from '../services/signalr.service';
 
 @Component({
   selector: 'app-login-form',
@@ -14,7 +15,7 @@ export class LoginFormComponent implements OnInit {
   password: string = "";
   loginService: LoginService = new LoginService(this.http);
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private signalrService: SignalrService, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -22,10 +23,12 @@ export class LoginFormComponent implements OnInit {
   onSubmit(data: any)
   {
     console.log(data)
-    this.loginService.login(data).subscribe(data => {
+    this.loginService.login(data).subscribe(async data => {
       const token = data.token;
       localStorage.setItem('jwt', <string>token);
       localStorage.setItem('username', this.username);
+      //await this.signalrService.startConnection();
+      this.signalrService.enteredSite(this.username);
       this.invalidLogin = false;
       this.router.navigate(['/']);
       console.log('success');

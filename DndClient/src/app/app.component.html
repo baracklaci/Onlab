@@ -1,2 +1,16 @@
-<router-outlet></router-outlet>
+<div class="flex">
+    <div class="navbar">
+        <app-navbar></app-navbar>
+    </div>
+    <div class="content">
+        <router-outlet class="content"></router-outlet>
+    </div>
+</div>
 
+<div *ngIf='showInvite' class="invite-container">
+    <div>{{inviteMessage}}</div>
+    <div class="btn-container">
+        <div (click)='accept()' class="dnd-btn action-btn">Join</div>
+        <div (click)='decline()' class="dnd-btn action-btn">Nah</div>
+    </div>
+</div>

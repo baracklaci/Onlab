@@ -6,11 +6,11 @@ body {
     font-size: 0.8em;
     color: rgb(24, 24, 24);
     height: 100vh;
-    background-color: rgb(124, 124, 124);
+    background-color: var(--dark-grey);
 }
 
 .content {
-    margin-left: 200px;
+    margin-left: 50px;
     height: 100%;
     position: relative;
     font-family: "Poppins", sans-serif;
